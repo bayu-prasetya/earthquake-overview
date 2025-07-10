@@ -13,19 +13,6 @@ from prefect import flow
 from dotenv import load_dotenv
 load_dotenv()
 
-# === Logging Setup ===
-log_dir = "logs"
-os.makedirs(log_dir, exist_ok=True)
-log_file = os.path.join(log_dir, f"etl_log_{datetime.now().strftime('%Y%m%d')}.log")
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler(log_file),
-        logging.StreamHandler()
-    ]
-)
 
 @flow(name="ETL Pipeline", log_prints=True)
 def run_pipeline(mode:str="replace") -> None:
@@ -35,6 +22,11 @@ def run_pipeline(mode:str="replace") -> None:
     Args:
         mode (str, optional): "replace", "fail", or "append". Defaults to "replace".
     """
+
+    # === Logging Setup ===
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s")
 
     logging.info(f"Starting ETL pipeline - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
