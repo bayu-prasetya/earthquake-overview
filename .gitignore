@@ -25,4 +25,5 @@ docs
 notebooks
 main.py
 data
-desktop.ini
+desktop.iniThumbs.db
+cleanupFile.py
