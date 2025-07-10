@@ -25,5 +25,6 @@ docs
 notebooks
 main.py
 data
-desktop.iniThumbs.db
+desktop.ini
+Thumbs.db
 cleanupFile.py
